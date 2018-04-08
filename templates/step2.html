@@ -24,7 +24,6 @@
     <a class="btn btn-outline-primary" href="#">CTA Link</a>
 </div>
 
-    
 <div class="container">
     <div class="pricing-header pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Main Title</h1>
@@ -38,13 +37,19 @@
 
     <div class="mb-3 mt-5">
         <form action="step3" method="post" id="step2_form">
-            <p class="formatted-text text-center " id="formatted_text_p">
-                {{ formatted_text | nl2br }}
-            </p>
+            <div class="row">
+	            <div class="col-lg-12">
+					<p class="formatted-text text-center " id="formatted_text_p">
+						<div class="formatted-text">
+        		        {{ formatted_text | nl2br }}
+						</div>
+    	    	    </p>
+				</div>
+			</div>
             <input type="hidden" name="formatted_text" id="formatted_text" value="">
             <input type="hidden" name="email" id="email" value="">
             <input type="hidden" name="article_id" id="article_id" value="">
-
+			<input type="hidden" name="time_spent" id="time_spent" value="">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <button type="submit" class="btn btn-block btn-success">DONE</button>
@@ -74,6 +79,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="assets/js/scripts.js"></script>
+<script>
+    var form = document.getElementById("step2_form");
+    window.onload = function() {
+        var start = document.createElement("input");
+        var currentTime = + new Date();
+        start.type = "hidden";
+        start.name = "startTime";
+        start.id = "startTime";
+        start.value = currentTime;
+        console.log('Current time: ', currentTime);
+
+        form.appendChild(start);
+    };
+</script>
+<script src="{{url_for('static', filename='js/scripts.js')}}"></script>
 </body>
 </html>

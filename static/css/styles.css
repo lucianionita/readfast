@@ -35,3 +35,8 @@ html {
 .subject {
     color: red;
 }
+
+.formatted-text {
+    width: 400px;
+    margin: 0 auto;
+}
